@@ -13,8 +13,10 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
-    build: .
+  ecomerce-kata:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     depends_on:
       db:
         condition: service_healthy
