@@ -1,0 +1,247 @@
+{
+	"info": {
+		"name": "Kata E-Commerce API",
+		"description": "Collection Postman pour tester l'API REST e-commerce (Spring Boot)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api"
+		}
+	],
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Lister tous les produits",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/products"
+					}
+				},
+				{
+					"name": "Obtenir un produit par ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/products/1"
+					}
+				},
+				{
+					"name": "Créer un produit",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/products",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Casque Bluetooth\",\n  \"price\": 79.99,\n  \"stockQuantity\": 200\n}"
+						}
+					}
+				},
+				{
+					"name": "Modifier un produit",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/products/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"iPhone 15 Pro\",\n  \"price\": 1099.99,\n  \"stockQuantity\": 45\n}"
+						}
+					}
+				},
+				{
+					"name": "Supprimer un produit",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/products/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Lister les catégories racines",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/categories"
+					}
+				},
+				{
+					"name": "Obtenir une catégorie par ID",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/categories/1"
+					}
+				},
+				{
+					"name": "Créer une catégorie",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/categories",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Vêtements\",\n  \"description\": \"Habits et accessoires\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Créer une sous-catégorie",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/categories",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Chaussures\",\n  \"description\": \"Tous types de chaussures\",\n  \"parentCategoryId\": 4\n}"
+						}
+					}
+				},
+				{
+					"name": "Modifier une catégorie",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/categories/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"High-Tech\",\n  \"description\": \"Produits haute technologie\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Associer un produit à une catégorie",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/categories/1/products/5"
+					}
+				},
+				{
+					"name": "Dissocier un produit d'une catégorie",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/categories/1/products/5"
+					}
+				},
+				{
+					"name": "Ajouter une sous-catégorie",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/categories/1/subcategories/4"
+					}
+				},
+				{
+					"name": "Retirer une sous-catégorie",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/categories/1/subcategories/4"
+					}
+				},
+				{
+					"name": "Supprimer une catégorie",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/categories/5"
+					}
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Créer un panier",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/carts"
+					}
+				},
+				{
+					"name": "Obtenir un panier",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/carts/1"
+					}
+				},
+				{
+					"name": "Ajouter un article au panier",
+					"request": {
+						"method": "POST",
+						"url": "{{baseUrl}}/carts/1/items",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": 1,\n  \"quantity\": 2\n}"
+						}
+					}
+				},
+				{
+					"name": "Modifier la quantité d'un article",
+					"request": {
+						"method": "PUT",
+						"url": "{{baseUrl}}/carts/1/items/1",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quantity\": 5\n}"
+						}
+					}
+				},
+				{
+					"name": "Retirer un article du panier",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/carts/1/items/1"
+					}
+				},
+				{
+					"name": "Supprimer un panier",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/carts/1"
+					}
+				}
+			]
+		}
+	]
+}
